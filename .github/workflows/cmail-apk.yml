@@ -1,0 +1,38 @@
+---
+name: C Mail - Test APK
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'cmail/**'
+
+permissions:
+  contents: read
+
+jobs:
+  build-cmail-apk:
+    name: Build C Mail test APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Gradle environment
+        uses: ./.github/actions/setup-gradle
+
+      - name: Build C Mail Foss Debug
+        run: ./gradlew :app-k9mail:assembleFossDebug -Pci=true
+
+      - name: Collect APK
+        run: |
+          mkdir -p cmail-apk
+          cp app-k9mail/build/outputs/apk/foss/debug/*.apk cmail-apk/C-Mail-test.apk
+
+      - name: Upload C Mail APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: C-Mail-test-apk
+          path: cmail-apk/C-Mail-test.apk
+          if-no-files-found: error
