@@ -35,3 +35,18 @@ This file tracks changes made by C Mail on top of Thunderbird for Android.
 - Created `cmail/develop` from `main`.
 - Added this customization register.
 - No Thunderbird source files modified yet.
+
+
+### C Mail core architecture
+- Registered `feature:cmail:core` in `settings.gradle.kts`. This is currently the only Thunderbird-root file changed by C Mail.
+- Added product identity constants for **C Mail**.
+- Added C Mail top-level destinations: Mail, Labels, Templates, Archives.
+- Added the per-account notification schedule domain model. Silent periods suppress notifications only; IMAP synchronization remains independent.
+- Added the server-first template source model with Aruba-compatible default IMAP folder `Modelli`.
+- C Mail-specific code lives under `feature/cmail/` to minimize upstream merge conflicts.
+
+### Upstream integration point 001
+- File: `settings.gradle.kts`
+- Change: one module include for `:feature:cmail:core`.
+- Reason: expose the isolated C Mail module to Gradle.
+- Merge risk: low; if upstream changes module registration, re-add this single include.
