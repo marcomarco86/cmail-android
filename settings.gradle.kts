@@ -78,6 +78,7 @@ if (useLocalComponents || useLocalBolt) {
 include(
     ":app-k9mail",
     ":app-thunderbird",
+    ":feature:cmail:core",
 )
 
 include(

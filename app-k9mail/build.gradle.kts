@@ -13,14 +13,14 @@ android {
     namespace = "com.fsck.k9"
 
     defaultConfig {
-        applicationId = "com.fsck.k9"
-        testApplicationId = "com.fsck.k9.tests"
+        applicationId = "it.curati.cmail"
+        testApplicationId = "it.curati.cmail.tests"
 
         versionCode = 39004
         versionName = "26.0"
         versionNameSuffix = "a1"
 
-        buildConfigField("String", "CLIENT_INFO_APP_NAME", "\"K-9 Mail\"")
+        buildConfigField("String", "CLIENT_INFO_APP_NAME", "\"C Mail\"")
     }
 
     androidResources {
@@ -143,6 +143,7 @@ android {
 
 dependencies {
     implementation(projects.appCommon)
+    implementation(projects.feature.cmail.core)
     implementation(projects.core.ui.compose.common)
     implementation(projects.core.ui.legacy.theme2.k9mail)
     implementation(projects.feature.launcher)
